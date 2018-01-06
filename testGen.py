@@ -1,4 +1,4 @@
-#! ~/Rob550/venv/bin/python
+#! /home/sprite/Rob550/venv/bin/python
 
 import numpy as np
 import sys
@@ -11,4 +11,4 @@ else:
     col = int(col)
     m = np.random.randn(row,col)
     M = '\n'.join((','.join(str(a) for a in b)) for b in m)
-print M
+    print M
