@@ -1,14 +1,15 @@
-#! /home/sprite/Rob550/venv/bin/python
+#! /usr/bin/python
 
-import numpy as np
-import sys
-
+import numpy as np                                              # import 'numpy' pkg
+import sys                                                      # import 'sys' module to access the
+                                                                # list of command line arguments
 filename, row, col = sys.argv
-if row.isdigit() == 0 or col.isdigit() == 0:
-    sys.stderr.write('ERROR: expected two integer arguments')
+if row.isdigit() == 0 or col.isdigit() == 0:                    # Check the validity of the inputs
+    sys.stderr.write('ERROR: expected two integer arguments\n')
 else:
     row = int(row)
     col = int(col)
-    m = np.random.randn(row,col)
-    M = '\n'.join((','.join(str(a) for a in b)) for b in m)
-    print M
+    matrix = np.random.standard_normal(size = (row,col))
+
+    for entry in matrix:
+        print ', '.join(map(str,entry))
