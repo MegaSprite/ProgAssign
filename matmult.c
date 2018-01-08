@@ -99,6 +99,7 @@ int writeMatrixToFile(char* fileName, double* matrix, int height, int width) {
   return 0;
 }
 
+/*copy contents of one array to the other*/
 void copy(double to[], double from[], long int len )
 {
     int i;
