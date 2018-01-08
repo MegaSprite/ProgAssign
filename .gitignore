@@ -7,3 +7,6 @@
 .idea/
 .idea
 *.csv
+.vscode
+.vscode/*
+.vscode/
