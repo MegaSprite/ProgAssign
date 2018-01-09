@@ -61,11 +61,4 @@ else:
 
         f.close()
 
-        # print out just for easier reference
-
-        print "Print out the multiplication result just for easier reference:"
-        for entry in matC:
-            print ', '.join(map(str,entry))
-
-
 

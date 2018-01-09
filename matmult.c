@@ -16,6 +16,12 @@ int main(int argc, char* argv[]){
     
     rowA=colA=rowB=colB=0;
 
+    if (argc < 5)
+    {
+        fprintf(stderr, "Not enough input\n");
+        return -1;
+    }
+
     if (((rowA =atoi(argv[1])) > 0) && ((colA=atoi(argv[2])) > 0) &&\
      ((rowB=atoi(argv[3])) > 0) && ((colB=atoi(argv[4])) > 0)){
          if (colA == rowB){
