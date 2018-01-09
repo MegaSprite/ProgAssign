@@ -23,13 +23,9 @@ else:
 
     with open('A.csv', 'rb') as a:
         readerA = list(csv.reader(a))
-        # readerA = csv.reader(a)
-        # matA = list(readerA)
 
     with open('B.csv', 'rb') as b:
         readerB = list(csv.reader(b))
-        # readerB = csv.reader(b)
-        # matB = list(readerB)
 
     if len(readerA) < rowA or len(readerB) < rowB or len(readerA[0]) < colA or len(readerB[0]) < colB:
         sys.stderr.write('ERROR: The row/col numbers entered are too large\n')
