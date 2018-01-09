@@ -6,7 +6,7 @@
 
 double* readMatrixFromFile(char*, int, int); 
 int writeMatrixToFile(char*, double*, int, int);
-void copy(double [], double [], long int);
+void copy(double [], double [], long int);              // copy one array to the other
 double* multmat(double [], double [],int, int, int, int);
 int64_t utime_now (void);
 
@@ -16,6 +16,7 @@ int main(int argc, char* argv[]){
     
     rowA=colA=rowB=colB=0;
 
+// Error Checking
     if (argc < 5)
     {
         fprintf(stderr, "Not enough input\n");
@@ -39,30 +40,40 @@ int main(int argc, char* argv[]){
          return -1;
      }
     
-    double matA[rowA*colA], matB[rowB*colB], matC[rowA*colB];
+// Allocate space for matrix A, B and C
+    double* matA = (double*) malloc(rowA * colA * sizeof(double));
+    double* matB = (double*) malloc(rowB * colB * sizeof(double));
+    double* matC = (double*) malloc(rowA * colB * sizeof(double));
 
-    copy(matA,readMatrixFromFile("A.csv",rowA,colA),rowA*colA);
-    copy(matB,readMatrixFromFile("B.csv",rowB,colB),rowB*colB);
+//Load Data from csv files    
+    double *readA, *readB;
 
-    copy(matC, multmat(matA, matB, rowA, colA, rowB, colB),rowA*colB);
-    
-    /* Timing*/
+    readA = readMatrixFromFile("A.csv",rowA,colA);
+    copy(matA,readA,rowA*colA);
+    free(readA);
+
+    readB = readMatrixFromFile("B.csv",rowB,colB);
+    copy(matB,readB,rowB*colB);
+    free(readB);
+
+//Matrix Multiplication
     int64_t begintime, endtime;
+
     begintime = utime_now();
-    multmat(matA, matB, rowA, colA, rowB, colB);        // for timing purposes, functionally redundant
+    matC = multmat(matA, matB, rowA, colA, rowB, colB);
     endtime = utime_now();
 
     printf("Time elapsed running matrix multiplication is %ld microseconds\n", endtime - begintime);
+    
+    free(matA);
+    free(matB);
 
     return writeMatrixToFile("C.csv", matC, rowA, colB);
 }
 
 
 
-/* The following are functions
- * Allocates a matrix which must be free'd by the calling code.
- * i.e. free()
- */
+// The following are functions
 double* readMatrixFromFile(char* fileName, int height, int width) {
   FILE* fp = fopen(fileName, "r");
   if (fp == NULL) {

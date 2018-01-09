@@ -5,10 +5,11 @@ import numpy as np
 import time
 import sys                                                      # import 'sys' module to access the
                                                                 # list of command line arguments
-filename, rowA, colA, rowB, colB = sys.argv
 
 def utime_now():
     return int(time.time() * 1E6)
+
+filename, rowA, colA, rowB, colB = sys.argv
 
 if rowA.isdigit() == 0 or colA.isdigit() == 0 or rowB.isdigit() == 0 or colB.isdigit() == 0 \
         or int(rowA) == 0 or int(colA) == 0 or int(rowB) == 0 or int(colB) == 0: # Check the validity of the inputs
