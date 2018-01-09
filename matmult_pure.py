@@ -21,25 +21,26 @@ else:
     colB = int(colB)
 
     with open('A.csv', 'rb') as a:
-        readerA = csv.reader(a)
-        matA = list(readerA)
+        readerA = list(csv.reader(a))
 
     with open('B.csv', 'rb') as b:
-        readerB = csv.reader(b)
-        matB = list(readerB)
+        readerB = list(csv.reader(b))
 
-    if len(matA) < rowA or len(matB) < rowB or len(matA[0]) < colA or len(matB[0]) < colB:
+    if len(readerA) < rowA or len(readerB) < rowB or len(readerA[0]) < colA or len(readerB[0]) < colB:
         sys.stderr.write('ERROR: The row/col numbers entered are too large\n')
 
     else:
+        matA = [[] for m in range(rowA)]
+        matB = [[] for m in range(rowB)]
         matC = [[] for m in range(rowA)]
 
         for i in range(0, rowA):
             for j in range(0, colA):
-                matA[i][j] = float(matA[i][j])
+                matA[i].append(float(readerA[i][j]))
+
         for i in range(0, rowB):
             for j in range(0, colB):
-                matB[i][j] = float(matB[i][j])
+                matB[i].append(float(readerB[i][j]))
 
         beginTime = utime_now()
 
