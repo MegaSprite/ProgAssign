@@ -23,13 +23,13 @@ int main(int argc, char* argv[]){
          }
          else
          {
-            printf("The two matrices are not compatible\n");
+            fprintf(stderr, "The two matrices are not compatible\n");
             return -1;
          }
 
      }
      else {
-         printf("Plz input non-zero positive integers\n");
+         fprintf(stderr, "Please input positive integers\n");
          return -1;
      }
     
@@ -53,7 +53,7 @@ int main(int argc, char* argv[]){
 
 
 
-/**
+/* The following are functions
  * Allocates a matrix which must be free'd by the calling code.
  * i.e. free()
  */
